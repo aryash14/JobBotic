@@ -7,10 +7,10 @@ import os
 from tqdm import tqdm
 # %%
 
-
+#getting the API key
 openai.api_key  = os.getenv('OpenAI_API_Key')
 
-
+#function calling OpenAI's modek
 def get_completion(prompt, model="gpt-3.5-turbo"):
     messages = [{"role": "user", "content": prompt}]
     response = openai.ChatCompletion.create(
@@ -42,7 +42,6 @@ def get_information(url):
                 company_name = job.find('a', class_='hidden-nested-link').get_text(strip=True)
                 location = job.find('span', class_='job-search-card__location').get_text(strip=True)
                 job_link = job.find('a', class_ = "base-card__full-link").get('href')
-                # , class_='hidden-nested-link'
 
                 job_description_response = requests.get(job_link)
                 if job_description_response.status_code == 200:
@@ -66,9 +65,10 @@ def get_information(url):
                             }}
                             Job Description: {job_description}
                         """
+                    #get job rating and reasoning using the gpt model
                     res = get_completion(prompt)
 
-                # Store job details in a dictionary
+                    # Store job details in a dictionary
                     job_details = {
                         'job_title': job_title,
                         'company_name': company_name,
@@ -81,13 +81,10 @@ def get_information(url):
 
                     # Append the job details to the list
                     job_listings.append(job_details)
-                    # break
+    
 
             # Convert the list of job listings to JSON
             job_listings_json = json.dumps(job_listings, indent=4)
-
-            # Print or return the JSON data
-            # print(job_listings_json)
             return job_listings
         else:
             print("No job listings found on the page.")

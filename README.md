@@ -16,12 +16,20 @@ The end result includes the following details for each job listing:
 6. Rating (0 - 10)
 7. Reasoning for Rating
 
+## Output Example
+For a given query: Entry Level AI Jobs
+The screenshot below is one of the results returned.
+![Screenshot 2023-09-30 at 7 45 26 PM](https://github.com/aryash14/metaphor/assets/71746459/a5029f35-7fbe-46ad-aa60-7e1127849702)
+
+
 ## Getting Started
 
 To run the program, follow these steps:
 
 1. Execute `python3 main.py` in your terminal.
 2. Send a POST request to `http://0.0.0.0:8080/job_search` using a tool like Postman to retrieve the results.
+POST request format is as followed:
+{"query": "Given Query"}
 
 ## Current Issues
 

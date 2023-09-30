@@ -21,6 +21,8 @@ def get_completion(prompt, model="gpt-3.5-turbo"):
     data = json.loads(text)
     return data
 
+#function for webcrawling
+#currently is formated for LinkedIn
 def get_information(url):
     response = requests.get(url)
     # Check if the request was successful
